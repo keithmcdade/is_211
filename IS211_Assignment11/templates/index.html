@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <link rel="stylesheet" href="static/style.css">
+    </head>
+
+    <body>
+
+        <h2>To Do List</h2>
+        
+        {{table|safe}}
+        
+        <div>
+            <form action="/submit" method="post">
+                <br>
+                <label for="task">Task:</label><br>
+                <input type="text" id="task" name="task"></input><br>
+
+                <label for="email">Email Address:</label><br>
+                <input type="text" id="email" name="email"></input><br>
+
+                <label for="priority">Priority Level:</label><br>
+                <select id="priority" name="priority">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select><br>
+
+                <input type="submit" value="Add To Do Item"></input>
+            </form>
+        </div>  
+
+        <div>
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                <p class=flashes>
+                {% for message in messages %}
+                  <a>{{ message }}</a>
+                {% endfor %}
+                </p>
+              {% endif %}
+            {% endwith %}
+        </div>
+
+        <div>
+            <form action="/clear" method="post">
+                <br>
+                <input type="submit" value="Clear"></input>
+            </form>
+        </div>
+
+        <div>
+            <form action="/save" method="post">
+                <br>
+                <input type="submit" value="Save List"></input>
+            </form>
+        </div>
+
+    </body>
+
+</html>
